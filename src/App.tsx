@@ -3,16 +3,13 @@ import { Project } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './sections/HeroSection';
 import { ExploreFilterBar, FilterCategory } from './components/ExploreFilterBar';
-import { AboutSection } from './sections/AboutSection';
-import { ExperienceSection } from './sections/ExperienceSection';
 import { FeaturedProjectSection } from './sections/FeaturedProjectSection';
 import { ProjectsSection } from './sections/ProjectsSection';
+import { ExperienceSection } from './sections/ExperienceSection';
+import { AboutSection } from './sections/AboutSection';
 import { SkillsSection } from './sections/SkillsSection';
-import { MindsetSection } from './sections/MindsetSection';
 import { EducationSection } from './sections/EducationSection';
 import { CertificationsSection } from './sections/CertificationsSection';
-import { GitHubSection } from './sections/GitHubSection';
-import { LinkedInSection } from './sections/LinkedInSection';
 import { ContactSection } from './sections/ContactSection';
 import { Footer } from './components/Footer';
 import { CaseStudyModal } from './components/CaseStudyModal';
@@ -35,72 +32,60 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-slate-100 bg-tech-grid relative selection:bg-primary-500/30 selection:text-primary-200">
-      {/* Subtle depth glow */}
-      <div className="fixed inset-0 bg-hero-glow pointer-events-none -z-10" />
-
-      {/* Sticky Top Navigation */}
+    <div className="min-h-screen bg-[#FAFAF8] text-[#111111] relative selection:bg-[#2563EB]/15 selection:text-[#2563EB]">
+      {/* Sticky Minimal Navigation */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
 
-      {/* Main Page Flow — Strict UI/UX Hierarchy */}
+      {/* Main Page Flow — Strict Hierarchy */}
       <main>
-        {/* 1. Hero Section */}
+        {/* 1. Hero */}
         <HeroSection onOpenResume={() => setResumeOpen(true)} />
 
-        {/* 2. Interactive Explore Bar (System Discovery) */}
+        {/* 2. Selected Work Filter Bar */}
         <ExploreFilterBar
           activeFilter={activeFilter}
           onSelectFilter={setActiveFilter}
         />
 
-        {/* 3. About Me (Editorial + 3 Cards) */}
-        <AboutSection />
-
-        {/* 4. Experience (VSRI Internship Timeline) */}
-        <ExperienceSection />
-
-        {/* 5. Featured Engineering Story (FraudShield Centerpiece) */}
+        {/* 3. FraudShield Featured Case Study */}
         <FeaturedProjectSection onOpenCaseStudy={handleOpenCaseStudy} />
 
-        {/* 6. Selected Systems (InterviewIQ, Nestora, ProjectFlow in Bento Grid) */}
+        {/* 4. Other Projects */}
         <ProjectsSection
           onOpenCaseStudy={handleOpenCaseStudy}
           activeFilter={activeFilter}
         />
 
-        {/* 7. Technical Arsenal (Visual Technology Wall) */}
+        {/* 5. Experience */}
+        <ExperienceSection />
+
+        {/* 6. About */}
+        <AboutSection />
+
+        {/* 7. Skills */}
         <SkillsSection />
 
-        {/* 8. How I Think About Software (4-Step Engineering Methodology) */}
-        <MindsetSection />
-
-        {/* 9. Academic Foundation (VIT-AP B.Tech CSE) */}
+        {/* 8. Education */}
         <EducationSection />
 
-        {/* 10. Certifications (AWS & Full-Stack) */}
+        {/* 9. Certifications */}
         <CertificationsSection />
 
-        {/* 11. GitHub Showcase CTA */}
-        <GitHubSection />
-
-        {/* 12. LinkedIn Networking CTA */}
-        <LinkedInSection />
-
-        {/* 13. Contact & Direct Inquiries */}
+        {/* 10. Contact */}
         <ContactSection onOpenResume={() => setResumeOpen(true)} />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Full-Width Interactive Case Study Inspector Modal */}
+      {/* Case Study Modal */}
       <CaseStudyModal
         project={selectedProject}
         isOpen={caseStudyOpen}
         onClose={handleCloseCaseStudy}
       />
 
-      {/* Downloadable / Printable Resume Modal */}
+      {/* Resume Modal */}
       <ResumeModal
         isOpen={resumeOpen}
         onClose={() => setResumeOpen(false)}

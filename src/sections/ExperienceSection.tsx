@@ -1,90 +1,64 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, CheckCircle2 } from 'lucide-react';
 import { experienceData } from '../data/experience';
 
 export const ExperienceSection: React.FC = () => {
   const exp = experienceData[0];
 
-  const conciseHighlights = [
-    "Full-Stack Development: Engineering end-to-end web applications with React.js, Node.js, and Express.",
-    "RESTful API & Database Integration: Designing structured API contracts and integrating MySQL relational schemas.",
-    "Reusable UI Architecture: Developing modular, accessible, and responsive frontend component libraries.",
-    "Agile Testing & Deployment: Collaborating in Agile sprints with Git version control, debugging, and production releases."
+  const deliverables = [
+    "Full-Stack Web Development: Building responsive, accessible applications using React.js, Node.js, Express.js, and JavaScript.",
+    "API & Database Integration: Designing RESTful APIs and integrating MySQL relational database schemas with optimized query performance.",
+    "Component Architecture: Creating reusable frontend component libraries and standardizing UI patterns across screens.",
+    "Agile Collaboration & Delivery: Collaborating in Agile/Scrum sprints using Git for version control, unit testing, and deployment."
   ];
 
-  const techRow = ["React", "Node", "Express", "JavaScript", "MySQL", "REST APIs", "Git"];
-
   return (
-    <section id="experience" className="py-24 relative">
+    <section id="experience" className="py-20 relative">
       <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mb-12">
-          <span className="text-[11px] font-mono text-primary-400 uppercase tracking-widest block mb-2 font-semibold">
-            02 // INDUSTRY EXPERIENCE
+          <span className="text-xs font-mono font-medium text-[#666666] uppercase tracking-wider block mb-2">
+            02 // Experience
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#111111] tracking-tight">
             Work Experience
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400">
-            Professional software development experience delivering production applications and APIs.
-          </p>
         </div>
 
-        {/* Large Experience Card with Vertical Accent Line */}
+        {/* Minimal Editorial Timeline */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="relative pl-6 sm:pl-8 border-l-2 border-primary-500"
+          transition={{ duration: 0.35 }}
+          className="p-7 sm:p-9 rounded-2xl bg-white border border-[#EAEAEA] shadow-sm space-y-6"
         >
-          {/* Timeline Dot */}
-          <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-background border-2 border-primary-400 flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-primary-400" />
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 pb-5 border-b border-[#EAEAEA]">
+            <div>
+              <h3 className="text-xl font-bold text-[#111111]">
+                {exp.role}
+              </h3>
+              <div className="text-sm font-medium text-[#2563EB] mt-0.5">
+                {exp.company}
+              </div>
+            </div>
+
+            <span className="text-xs font-mono text-[#888888] bg-[#FAFAF8] px-2.5 py-1 rounded border border-[#EAEAEA]">
+              {exp.period}
+            </span>
           </div>
 
-          <div className="p-6 sm:p-8 rounded-2xl bg-background-card border border-background-border saas-border-hover shadow-saas-card">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-background-border">
-              <div>
-                <span className="text-xs font-mono px-2 py-0.5 rounded bg-primary-500/15 text-primary-300 border border-primary-500/30">
-                  {exp.type}
-                </span>
-                <h3 className="text-xl font-bold text-slate-100 mt-2">
-                  {exp.role}
-                </h3>
-                <div className="text-base font-medium text-primary-400 mt-0.5">
-                  {exp.company}
-                </div>
-              </div>
+          <div className="space-y-3 text-sm text-[#444444] leading-relaxed">
+            {deliverables.map((item, idx) => (
+              <p key={idx} className="flex items-start gap-2.5">
+                <span className="text-[#888888] mt-1 text-xs">―</span>
+                <span>{item}</span>
+              </p>
+            ))}
+          </div>
 
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-background-elevated px-3 py-1.5 rounded-lg border border-background-border self-start sm:self-auto">
-                <Calendar className="w-3.5 h-3.5 text-primary-400" />
-                <span>{exp.period}</span>
-              </div>
-            </div>
-
-            {/* 4 Concise Bullets */}
-            <div className="mt-6 space-y-3">
-              {conciseHighlights.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-primary-400 flex-shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Small Technology Row */}
-            <div className="mt-7 pt-5 border-t border-background-border flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono text-slate-500 mr-2">Technologies:</span>
-              {techRow.map((t) => (
-                <span
-                  key={t}
-                  className="text-xs font-mono px-2.5 py-0.5 rounded bg-background-elevated text-slate-300 border border-background-border"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
+          <div className="pt-4 border-t border-[#EAEAEA] text-xs font-mono text-[#666666]">
+            <span className="text-[#999999] mr-2">Tech:</span>
+            <span>React · Node.js · Express.js · JavaScript · MySQL · REST APIs · Git</span>
           </div>
         </motion.div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { ExternalLink, Github, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectCardProps {
@@ -22,50 +22,49 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.35, delay: index * 0.08 }}
-      className={`group rounded-2xl bg-background-card border border-background-border saas-border-hover p-6 sm:p-7 flex flex-col justify-between shadow-saas-card ${
+      className={`group p-6 sm:p-8 rounded-2xl bg-white border border-[#EAEAEA] hover:border-[#CCCCCC] transition-all flex flex-col justify-between shadow-sm hover:-translate-y-1 ${
         isWide ? 'lg:col-span-2' : ''
       }`}
     >
-      <div>
-        {/* Top Header */}
-        <div className="flex items-center justify-between mb-3.5">
-          <span className="font-mono text-xs font-semibold text-primary-400 px-2 py-0.5 rounded bg-background-elevated border border-background-border">
-            {project.order} / PROJECT
-          </span>
-          <span className="text-[11px] font-mono text-slate-500 uppercase">
-            Full-Stack System
+      <div className="space-y-4">
+        {/* Top order indicator */}
+        <div className="flex items-center justify-between">
+          <span className="font-mono text-xs text-[#888888]">
+            {project.order} / SELECTED SYSTEM
           </span>
         </div>
 
         {/* Title & Subtitle */}
-        <h3 className="text-xl font-bold text-slate-100 group-hover:text-primary-300 transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-xs font-mono text-slate-400 mt-1">
-          {project.subtitle}
-        </p>
+        <div>
+          <h3 className="text-xl sm:text-2xl font-bold text-[#111111] group-hover:text-[#2563EB] transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-xs font-mono text-[#666666] mt-0.5">
+            {project.subtitle}
+          </p>
+        </div>
 
         {/* Description */}
-        <p className="text-xs sm:text-sm text-slate-300 mt-3.5 leading-relaxed">
+        <p className="text-xs sm:text-sm text-[#555555] leading-relaxed">
           {project.description}
         </p>
 
         {/* Feature deliverables */}
-        <div className="mt-4 space-y-2">
+        <div className="space-y-1.5 pt-1">
           {project.features.slice(0, isWide ? 4 : 3).map((feature, idx) => (
-            <div key={idx} className="flex items-start gap-2 text-xs text-slate-400">
-              <CheckCircle2 className="w-3.5 h-3.5 text-primary-400 flex-shrink-0 mt-0.5" />
-              <span className="line-clamp-2">{feature}</span>
+            <div key={idx} className="flex items-start gap-2 text-xs text-[#666666]">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#2563EB] flex-shrink-0 mt-0.5" />
+              <span>{feature}</span>
             </div>
           ))}
         </div>
 
-        {/* Tech Pills */}
-        <div className="flex flex-wrap gap-1.5 mt-5">
+        {/* Tech Stack */}
+        <div className="flex flex-wrap gap-1.5 pt-2">
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[11px] font-mono px-2.5 py-0.5 rounded bg-background-elevated text-slate-300 border border-background-border"
+              className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#F4F4F0] text-[#444444] border border-[#EAEAEA]"
             >
               {tag}
             </span>
@@ -74,13 +73,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       {/* Card Actions Footer */}
-      <div className="mt-6 pt-4 border-t border-background-border flex items-center justify-between gap-2 flex-wrap">
+      <div className="mt-8 pt-4 border-t border-[#EAEAEA] flex items-center justify-between gap-2 flex-wrap">
         <button
           onClick={() => onOpenCaseStudy(project)}
-          className="flex items-center gap-1.5 text-xs font-medium text-primary-400 hover:text-primary-300 transition-colors py-1 group/btn"
+          className="inline-flex items-center gap-1 text-xs font-semibold text-[#111111] hover:text-[#2563EB] transition-colors group/btn"
         >
-          <BookOpen className="w-3.5 h-3.5" />
-          <span>Case Study</span>
+          <span>View project details</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1" />
         </button>
 
@@ -90,7 +88,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-background-elevated border border-transparent hover:border-background-border transition-all"
+              className="p-1.5 rounded text-[#666666] hover:text-[#111111] transition-colors"
               aria-label={`${project.title} GitHub repository`}
             >
               <Github className="w-4 h-4" />
@@ -101,7 +99,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-1.5 rounded-lg text-slate-400 hover:text-primary-400 hover:bg-background-elevated border border-transparent hover:border-background-border transition-all"
+              className="p-1.5 rounded text-[#666666] hover:text-[#2563EB] transition-colors"
               aria-label={`${project.title} Live Preview`}
             >
               <ExternalLink className="w-4 h-4" />
