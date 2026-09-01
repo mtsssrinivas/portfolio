@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Project } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './sections/HeroSection';
+import { ExploreFilterBar, FilterCategory } from './components/ExploreFilterBar';
 import { AboutSection } from './sections/AboutSection';
-import { QuickStatsSection } from './sections/QuickStatsSection';
+import { ExperienceSection } from './sections/ExperienceSection';
 import { FeaturedProjectSection } from './sections/FeaturedProjectSection';
 import { ProjectsSection } from './sections/ProjectsSection';
-import { ExperienceSection } from './sections/ExperienceSection';
 import { SkillsSection } from './sections/SkillsSection';
 import { MindsetSection } from './sections/MindsetSection';
 import { EducationSection } from './sections/EducationSection';
@@ -22,6 +22,7 @@ export const App: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [caseStudyOpen, setCaseStudyOpen] = useState(false);
   const [resumeOpen, setResumeOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>('all');
 
   const handleOpenCaseStudy = (project: Project) => {
     setSelectedProject(project);
@@ -34,59 +35,72 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background text-slate-100 bg-grid-pattern relative selection:bg-primary-500/30 selection:text-primary-200">
-      {/* Radial Gradient overlay */}
-      <div className="fixed inset-0 bg-radial-gradient pointer-events-none -z-10" />
+    <div className="min-h-screen bg-background text-slate-100 bg-tech-grid relative selection:bg-primary-500/30 selection:text-primary-200">
+      {/* Subtle depth glow */}
+      <div className="fixed inset-0 bg-hero-glow pointer-events-none -z-10" />
 
       {/* Sticky Top Navigation */}
       <Navbar onOpenResume={() => setResumeOpen(true)} />
 
-      {/* Main Page Flow — Ordered by Strict Visual & Recruiter Hierarchy */}
+      {/* Main Page Flow — Strict UI/UX Hierarchy */}
       <main>
         {/* 1. Hero Section */}
         <HeroSection onOpenResume={() => setResumeOpen(true)} />
 
-        {/* 1.1 About & Pillars Summary */}
+        {/* 2. Interactive Explore Bar (System Discovery) */}
+        <ExploreFilterBar
+          activeFilter={activeFilter}
+          onSelectFilter={setActiveFilter}
+        />
+
+        {/* 3. About Me (Editorial + 3 Cards) */}
         <AboutSection />
 
-        {/* 1.2 Quick Stats Bar */}
-        <QuickStatsSection />
-
-        {/* 2. FraudShield (Featured Engineering Story Centerpiece) */}
-        <FeaturedProjectSection onOpenCaseStudy={handleOpenCaseStudy} />
-
-        {/* 3. Other Selected Projects (InterviewIQ, Nestora, ProjectFlow) */}
-        <ProjectsSection onOpenCaseStudy={handleOpenCaseStudy} />
-
-        {/* 4. Experience Timeline (VSRI Internship) */}
+        {/* 4. Experience (VSRI Internship Timeline) */}
         <ExperienceSection />
 
-        {/* 5. Technical Arsenal & Engineering Mindset */}
+        {/* 5. Featured Engineering Story (FraudShield Centerpiece) */}
+        <FeaturedProjectSection onOpenCaseStudy={handleOpenCaseStudy} />
+
+        {/* 6. Selected Systems (InterviewIQ, Nestora, ProjectFlow in Bento Grid) */}
+        <ProjectsSection
+          onOpenCaseStudy={handleOpenCaseStudy}
+          activeFilter={activeFilter}
+        />
+
+        {/* 7. Technical Arsenal (Visual Technology Wall) */}
         <SkillsSection />
+
+        {/* 8. How I Think About Software (4-Step Engineering Methodology) */}
         <MindsetSection />
 
-        {/* 6. Education & Certifications */}
+        {/* 9. Academic Foundation (VIT-AP B.Tech CSE) */}
         <EducationSection />
+
+        {/* 10. Certifications (AWS & Full-Stack) */}
         <CertificationsSection />
 
-        {/* 7. GitHub & LinkedIn Channels */}
+        {/* 11. GitHub Showcase CTA */}
         <GitHubSection />
+
+        {/* 12. LinkedIn Networking CTA */}
         <LinkedInSection />
 
-        {/* 8. Contact & Conversion */}
+        {/* 13. Contact & Direct Inquiries */}
         <ContactSection onOpenResume={() => setResumeOpen(true)} />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Interactive Modals */}
+      {/* Full-Width Interactive Case Study Inspector Modal */}
       <CaseStudyModal
         project={selectedProject}
         isOpen={caseStudyOpen}
         onClose={handleCloseCaseStudy}
       />
 
+      {/* Downloadable / Printable Resume Modal */}
       <ResumeModal
         isOpen={resumeOpen}
         onClose={() => setResumeOpen(false)}

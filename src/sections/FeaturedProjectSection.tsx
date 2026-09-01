@@ -9,8 +9,7 @@ import {
   Lock, 
   Flame, 
   BookOpen, 
-  Cpu, 
-  ArrowUpRight
+  Cpu
 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { Project } from '../types';
@@ -27,35 +26,31 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
   const fraudshield = projectsData[0]; // FraudShield
 
   return (
-    <section id="featured-project" className="py-20 relative">
-      {/* Background illumination */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary-600/5 rounded-full blur-[160px] pointer-events-none -z-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="featured-project" className="py-24 relative">
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-2 text-xs font-mono text-primary-400 uppercase tracking-widest mb-2">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-6 border-b border-background-border">
+          <div>
+            <div className="flex items-center gap-2 text-[11px] font-mono text-primary-400 uppercase tracking-widest mb-2 font-semibold">
               <ShieldCheck className="w-4 h-4" />
-              <span>03 // FEATURED DISTRIBUTED SYSTEM</span>
+              <span>03 // FEATURED ENGINEERING STORY</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-100 tracking-tight">
-              FraudShield
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-100 tracking-tight">
+              01 / FraudShield
             </h2>
-            <p className="text-base sm:text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-primary-300 via-primary-400 to-accent-violet mt-1">
-              Production Real-Time Fraud Detection & Digital Banking Platform
+            <p className="text-sm sm:text-base text-primary-300 font-medium mt-1.5">
+              Real-Time Fraud Detection & Digital Banking Platform
             </p>
           </div>
 
-          {/* Quick Action Bar */}
+          {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-3">
             <button
               onClick={() => onOpenCaseStudy(fraudshield)}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-primary-600 hover:bg-primary-500 text-white shadow-lg shadow-primary-500/25 border border-primary-400/30 transition-all hover:scale-[1.02]"
+              className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-primary-600 hover:bg-primary-500 text-white shadow-md shadow-primary-500/20 border border-primary-400/30 transition-all hover:scale-[1.02]"
             >
               <BookOpen className="w-4 h-4" />
-              <span>Read Full Case Study</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <span>Explore Architecture →</span>
             </button>
 
             {fraudshield.liveUrl && (
@@ -63,22 +58,10 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
                 href={fraudshield.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-background-card hover:bg-slate-800 text-slate-200 border border-background-border transition-all"
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-background-card hover:bg-background-elevated text-slate-200 border border-background-border transition-all"
               >
-                <span>Live Banking Console</span>
-                <ExternalLink className="w-4 h-4 text-primary-400" />
-              </a>
-            )}
-
-            {fraudshield.apiUrl && (
-              <a
-                href={fraudshield.apiUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-background-card hover:bg-slate-800 text-slate-200 border border-background-border transition-all"
-              >
-                <span>Live API Gateway</span>
-                <ExternalLink className="w-4 h-4 text-emerald-400" />
+                <span>Live Demo</span>
+                <ExternalLink className="w-3.5 h-3.5 text-primary-400" />
               </a>
             )}
 
@@ -87,154 +70,120 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
                 href={fraudshield.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-background-card hover:bg-slate-800 text-slate-200 border border-background-border transition-all"
+                className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-medium bg-background-card hover:bg-background-elevated text-slate-200 border border-background-border transition-all"
                 aria-label="GitHub Repository"
               >
                 <Github className="w-4 h-4" />
+                <span className="hidden sm:inline">GitHub</span>
               </a>
             )}
           </div>
         </div>
 
-        {/* Featured Project Big Banner Card */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-background-card/90 border border-background-border shadow-2xl relative overflow-hidden backdrop-blur-xl">
-          <div className="space-y-4 max-w-4xl">
-            <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal">
-              &ldquo;An enterprise-grade distributed digital banking and real-time fraud mitigation platform built around an event-driven microservice architecture.&rdquo;
-            </p>
-            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Engineered with TypeScript, Node.js, Express, Apache Kafka, PostgreSQL 16, Redis 7, and React 18. FraudShield processes financial transactions with sub-millisecond fraud scoring, zero double-debit ledger failures, and complete event-driven audit observability.
-            </p>
+        {/* Featured Big Bento Card */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-background-card border border-background-border shadow-saas-card space-y-5">
+          <p className="text-base sm:text-lg text-slate-200 leading-relaxed font-normal max-w-4xl">
+            &ldquo;An event-driven distributed platform combining microservices, Kafka, PostgreSQL, Redis, and real-time fraud detection.&rdquo;
+          </p>
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-3xl">
+            Engineered with TypeScript, Node.js, Express, Apache Kafka, PostgreSQL 16, Redis 7, and React 18. FraudShield processes high-frequency financial transactions with sub-millisecond fraud scoring, zero double-debit ledger failures, and complete event-driven audit observability.
+          </p>
 
-            {/* Tech Badges */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {fraudshield.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 rounded-lg text-xs font-mono bg-background-subtle border border-background-border text-slate-300"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+          {/* Tech Pills */}
+          <div className="flex flex-wrap gap-2 pt-1">
+            {fraudshield.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 rounded-lg text-xs font-mono bg-background-elevated border border-background-border text-slate-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Interactive Architecture Visualization Component */}
+        {/* Interactive Architecture Diagram */}
         <ArchitectureDiagram />
 
-        {/* Engineering Highlights Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Card 1: Distributed Architecture */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-primary-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-primary-500/10 border border-primary-500/20 flex items-center justify-center text-primary-400 mb-4">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h4 className="text-base font-bold text-slate-100">
-                Distributed Architecture & Mesh
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                8 decoupled microservices communicating across 7 partitioned Kafka event streams, 5 isolated database schemas, and an ephemeral Redis state layer.
-              </p>
-            </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-primary-300">
-              8 Services • 7 Kafka Topics • 5 Schemas
-            </div>
+        {/* Engineering Decisions: 6 Clean Cards */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-base font-bold text-slate-100 font-mono">
+              ENGINEERING DECISIONS & PATTERNS
+            </h3>
+            <span className="text-xs font-mono text-slate-500">6 Architectural Pillars</span>
           </div>
 
-          {/* Card 2: Saga Pattern */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-violet-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-4">
-                <Repeat className="w-5 h-5" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* 1. Saga */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Repeat className="w-4 h-4 text-primary-400" />
+                <span>Saga Compensation</span>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                Distributed Choreography Saga
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Asynchronous event flow across services without single-point bottlenecks. Downstream gateway failures execute automated compensation rollback workflows instantly.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Asynchronous transaction choreography without single-point bottlenecks. Downstream gateway failures execute automated compensation rollback workflows instantly.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-violet-300">
-              Zero Orchestrator Bottlenecks • Auto Rollback
-            </div>
-          </div>
 
-          {/* Card 3: Transactional Outbox */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-cyan-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4">
-                <Zap className="w-5 h-5" />
+            {/* 2. Outbox */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Zap className="w-4 h-4 text-primary-400" />
+                <span>Transactional Outbox</span>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                Transactional Outbox Pattern
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Eliminates dual-write inconsistencies between PostgreSQL transactions and Kafka event dispatch by staging domain events in an outbox table atomically.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Eliminates dual-write inconsistencies between PostgreSQL database writes and Kafka event emissions by staging messages atomically in an outbox table.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-cyan-300">
-              ACID + Kafka Dual-Write Consistency
-            </div>
-          </div>
 
-          {/* Card 4: 6-Link Chain of Responsibility */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-amber-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 mb-4">
-                <Cpu className="w-5 h-5" />
+            {/* 3. Chain of Responsibility */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Cpu className="w-4 h-4 text-primary-400" />
+                <span>Chain of Responsibility</span>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                6-Link Chain of Responsibility
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Evaluates Velocity, Transfer Ceilings, Balance Drain (≥90%), New Device, Location Leap, and Frequency. Bypasses subsequent rules at score ≥81.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Modular 6-link heuristic risk pipeline evaluating velocity, ceilings, and balance drain. Bypasses subsequent rules at score &ge; 81 (1.52&times; speedup).
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-amber-300">
-              1.52× Measured Speedup • 0.0015ms Latency
-            </div>
-          </div>
 
-          {/* Card 5: PostgreSQL Pessimistic Locking */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-emerald-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4">
-                <Lock className="w-5 h-5" />
+            {/* 4. Redis */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Layers className="w-4 h-4 text-primary-400" />
+                <span>Redis Velocity & Rate Limiting</span>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                PostgreSQL Pessimistic Row Locking
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Balances are protected inside isolated transactions using <code className="text-emerald-300">SELECT ... FOR UPDATE</code> locks, eliminating race conditions and double-debit anomalies.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Sliding-window velocity tracking using Redis Sorted Sets and 2-tier rate limiting deflecting 80% of burst traffic to shield connection pools.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-emerald-300">
-              0.00% Double-Debit • ACID Settlement
-            </div>
-          </div>
 
-          {/* Card 6: Kafka Consumer Resilience & Redis */}
-          <div className="p-6 rounded-2xl bg-background-card/70 border border-background-border hover:border-rose-500/40 transition-all flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 mb-4">
-                <Flame className="w-5 h-5" />
+            {/* 5. PostgreSQL */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Lock className="w-4 h-4 text-primary-400" />
+                <span>PostgreSQL Pessimistic Locking</span>
               </div>
-              <h4 className="text-base font-bold text-slate-100">
-                Kafka Resilience & Deep Redis
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-400 mt-2 leading-relaxed">
-                Exponential backoff (100ms → 200ms → 400ms) with Dead Letter Queue (DLQ), plus Redis Sorted Sets for velocity tracking and Level 1/2 rate limiting.
+              <p className="text-xs text-slate-400 leading-relaxed">
+                All balance adjustments execute inside isolated PostgreSQL transactions using <code className="text-primary-300">SELECT ... FOR UPDATE</code> locks for 0.00% double-debits.
               </p>
             </div>
-            <div className="mt-4 pt-3 border-t border-background-border/50 font-mono text-[11px] text-rose-300">
-              DLQ Isolation • 80% Burst Deflected
+
+            {/* 6. Kafka & DLQ */}
+            <div className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover space-y-2">
+              <div className="flex items-center gap-2 text-xs font-bold text-slate-200">
+                <Flame className="w-4 h-4 text-primary-400" />
+                <span>Kafka Retry & DLQ Flow</span>
+              </div>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Exponential backoff (100ms &rarr; 200ms &rarr; 400ms) with Dead Letter Queue routing poison-pill payloads without halting consumer groups.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Performance Benchmark Dashboard Component */}
+        {/* Performance Benchmark Dashboard */}
         <BenchmarkDashboard />
       </div>
     </section>

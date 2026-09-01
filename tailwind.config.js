@@ -9,12 +9,12 @@ export default {
     extend: {
       colors: {
         background: {
-          DEFAULT: '#090a0f',
-          subtle: '#0f131a',
-          card: '#131823',
-          cardHover: '#182030',
-          border: '#1f293d',
-          borderHover: '#2d3b55'
+          DEFAULT: '#08090B',
+          secondary: '#0D1014',
+          card: '#11151A',
+          elevated: '#151A21',
+          border: 'rgba(255, 255, 255, 0.08)',
+          borderHover: 'rgba(59, 130, 246, 0.4)',
         },
         primary: {
           50: '#eff6ff',
@@ -30,31 +30,22 @@ export default {
           DEFAULT: '#3b82f6'
         },
         accent: {
-          cyan: '#06b6d4',
-          violet: '#8b5cf6',
-          emerald: '#10b981',
-          amber: '#f59e0b',
-          rose: '#f43f5e'
+          blue: '#3b82f6',
+          violet: '#6366f1',
+          indigo: '#4f46e5'
         }
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace']
       },
-      animation: {
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 6s ease-in-out infinite',
-        'glow-pulse': 'glow 3s ease-in-out infinite alternate',
+      maxWidth: {
+        'content': '1360px'
       },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-8px)' },
-        },
-        glow: {
-          '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 15px rgba(59, 130, 246, 0.3))' },
-          '100%': { opacity: '0.8', filter: 'drop-shadow(0 0 25px rgba(139, 92, 246, 0.5))' },
-        }
+      boxShadow: {
+        'saas-card': '0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.06)',
+        'saas-card-hover': '0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(59, 130, 246, 0.4)',
+        'saas-elevated': '0 20px 40px -8px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1)'
       }
     },
   },

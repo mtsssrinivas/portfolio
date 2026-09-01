@@ -6,10 +6,10 @@ import {
   Layers, 
   Database, 
   Zap, 
-  Activity, 
-  CheckCircle2,
   Lock,
-  Cpu
+  Cpu,
+  Activity,
+  CheckCircle2
 } from 'lucide-react';
 
 export const HeroVisual: React.FC = () => {
@@ -27,81 +27,61 @@ export const HeroVisual: React.FC = () => {
   const nodes = [
     {
       id: 0,
-      title: "Client & Edge",
-      subtitle: "HTTPS / TLS 1.3",
+      title: "CLIENT",
+      subtitle: "React / Browser (TLS 1.3)",
       icon: Globe,
-      color: "text-cyan-400",
-      borderColor: "border-cyan-500/40",
-      bgColor: "bg-cyan-950/30",
-      tag: "req: 120ms"
+      tag: "HTTPS Request"
     },
     {
       id: 1,
-      title: "API Gateway",
-      subtitle: "L1/L2 Rate Limit & Auth",
+      title: "API GATEWAY",
+      subtitle: "Node / Express (Rate Limit L1/L2)",
       icon: ShieldCheck,
-      color: "text-blue-400",
-      borderColor: "border-blue-500/40",
-      bgColor: "bg-blue-950/30",
-      tag: "80% Deflection"
+      tag: "80% Burst Deflection"
     },
     {
       id: 2,
-      title: "Microservices",
-      subtitle: "8 Decoupled Services",
+      title: "MICROSERVICES",
+      subtitle: "8 Monorepo Decoupled Services",
       icon: Layers,
-      color: "text-violet-400",
-      borderColor: "border-violet-500/40",
-      bgColor: "bg-violet-950/30",
       tag: "Saga Choreography"
     },
     {
       id: 3,
-      title: "Kafka Event Stream",
-      subtitle: "7 Partitioned Topics",
+      title: "KAFKA & REDIS",
+      subtitle: "7 Topics + Sliding-Window Velocity",
       icon: Zap,
-      color: "text-amber-400",
-      borderColor: "border-amber-500/40",
-      bgColor: "bg-amber-950/30",
       tag: "Transactional Outbox"
     },
     {
       id: 4,
-      title: "PostgreSQL & Redis",
-      subtitle: "Row Locks & Sorted Sets",
+      title: "POSTGRESQL",
+      subtitle: "ACID Ledger & Row Locks",
       icon: Database,
-      color: "text-emerald-400",
-      borderColor: "border-emerald-500/40",
-      bgColor: "bg-emerald-950/30",
-      tag: "0.00% Double-Spend"
+      tag: "0.00% Double-Debit"
     }
   ];
 
   return (
     <div className="relative w-full max-w-lg mx-auto">
-      {/* Glow background */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary-500/20 via-accent-violet/20 to-accent-cyan/20 rounded-2xl blur-xl opacity-75"></div>
-
-      <div className="relative rounded-2xl bg-background-card/90 border border-background-border p-5 shadow-2xl backdrop-blur-xl">
+      {/* SaaS Card Container */}
+      <div className="relative rounded-2xl bg-background-elevated border border-background-border p-5 sm:p-6 shadow-saas-elevated">
         {/* Terminal Header */}
-        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-background-border/80 text-xs">
-          <div className="flex items-center gap-2">
-            <div className="flex gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-            </div>
-            <span className="font-mono text-slate-400 ml-1">system://distributed-topology</span>
+        <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-background-border text-xs">
+          <div className="flex items-center gap-2 font-mono text-slate-300">
+            <span className="text-primary-400 font-bold">SYSTEM TOPOLOGY</span>
+            <span className="text-slate-600">/</span>
+            <span className="text-slate-400 text-[11px]">distributed.mesh</span>
           </div>
 
-          <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-500/30">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>ONLINE</span>
+          <div className="flex items-center gap-1.5 text-emerald-400 font-mono text-[11px] bg-emerald-950/30 px-2 py-0.5 rounded border border-emerald-500/20">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>LIVE PIPELINE</span>
           </div>
         </div>
 
         {/* System Pipeline Nodes */}
-        <div className="space-y-2.5 relative">
+        <div className="space-y-2.5">
           {nodes.map((node, index) => {
             const Icon = node.icon;
             const isCurrent = activeStep === index;
@@ -109,24 +89,19 @@ export const HeroVisual: React.FC = () => {
 
             return (
               <div key={node.id} className="relative">
-                <motion.div
-                  animate={{
-                    scale: isCurrent ? 1.02 : 1,
-                    borderColor: isCurrent ? 'rgba(96, 165, 250, 0.6)' : 'rgba(31, 41, 61, 0.6)'
-                  }}
-                  transition={{ duration: 0.3 }}
-                  className={`flex items-center justify-between p-2.5 rounded-xl border transition-all ${
+                <div
+                  className={`flex items-center justify-between p-3 rounded-xl border transition-all duration-300 ${
                     isCurrent
-                      ? `${node.bgColor} ${node.borderColor} shadow-md shadow-primary-500/10`
-                      : 'bg-background-subtle/50 border-background-border/50 hover:bg-background-subtle/80'
+                      ? 'bg-background-card border-primary-500/50 shadow-md shadow-primary-500/10'
+                      : 'bg-background-card/50 border-background-border hover:border-slate-600'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <div
                       className={`w-8 h-8 rounded-lg flex items-center justify-center border transition-all ${
                         isCurrent
-                          ? `${node.bgColor} ${node.borderColor} ${node.color}`
-                          : 'bg-background-card border-background-border text-slate-400'
+                          ? 'bg-primary-500/20 border-primary-400 text-primary-300'
+                          : 'bg-background border-background-border text-slate-400'
                       }`}
                     >
                       <Icon className="w-4 h-4" />
@@ -134,23 +109,23 @@ export const HeroVisual: React.FC = () => {
 
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-xs text-slate-200">
+                        <span className="font-semibold text-xs font-mono text-slate-100">
                           {node.title}
                         </span>
                         {isCurrent && (
-                          <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-primary-500/20 text-primary-300 border border-primary-500/30">
+                          <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-primary-500/20 text-primary-300 border border-primary-500/30">
                             ACTIVE
                           </span>
                         )}
                       </div>
-                      <span className="text-[11px] text-slate-400 block font-mono">
+                      <span className="text-[11px] text-slate-400 block">
                         {node.subtitle}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-background/60 text-slate-300 border border-background-border hidden sm:inline-block">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-background text-slate-400 border border-background-border hidden sm:inline-block">
                       {node.tag}
                     </span>
                     {isPassed ? (
@@ -166,15 +141,15 @@ export const HeroVisual: React.FC = () => {
                       <div className="w-2 h-2 rounded-full bg-slate-700"></div>
                     )}
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Connecting arrow/line */}
                 {index < nodes.length - 1 && (
-                  <div className="h-2.5 flex items-center justify-center my-0.5">
-                    <div className="w-[1px] h-full bg-gradient-to-b from-primary-500/40 to-transparent relative">
+                  <div className="h-2 flex items-center justify-center my-0.5">
+                    <div className="w-[1px] h-full bg-slate-800 relative">
                       {isCurrent && (
                         <motion.div
-                          className="absolute w-1.5 h-1.5 -left-[2px] rounded-full bg-primary-400 shadow-sm shadow-primary-400"
+                          className="absolute w-1.5 h-1.5 -left-[2px] rounded-full bg-primary-400"
                           initial={{ top: 0 }}
                           animate={{ top: '100%' }}
                           transition={{ duration: 0.6, repeat: Infinity }}
@@ -189,18 +164,18 @@ export const HeroVisual: React.FC = () => {
         </div>
 
         {/* Live Mini Telemetry Footer */}
-        <div className="mt-4 pt-3.5 border-t border-background-border/80 grid grid-cols-3 gap-2 text-center font-mono">
-          <div className="p-2 rounded-lg bg-background/60 border border-background-border/60">
+        <div className="mt-4 pt-3.5 border-t border-background-border grid grid-cols-3 gap-2 text-center font-mono">
+          <div className="p-2 rounded-lg bg-background-card border border-background-border">
             <div className="text-[10px] text-slate-400 flex items-center justify-center gap-1">
               <Cpu className="w-3 h-3 text-primary-400" />
               <span>Throughput</span>
             </div>
-            <div className="text-xs font-semibold text-slate-200 mt-0.5">
+            <div className="text-xs font-semibold text-slate-100 mt-0.5">
               {throughputCounter.toLocaleString()} RPS
             </div>
           </div>
 
-          <div className="p-2 rounded-lg bg-background/60 border border-background-border/60">
+          <div className="p-2 rounded-lg bg-background-card border border-background-border">
             <div className="text-[10px] text-slate-400 flex items-center justify-center gap-1">
               <Activity className="w-3 h-3 text-emerald-400" />
               <span>p95 Latency</span>
@@ -210,12 +185,12 @@ export const HeroVisual: React.FC = () => {
             </div>
           </div>
 
-          <div className="p-2 rounded-lg bg-background/60 border border-background-border/60">
+          <div className="p-2 rounded-lg bg-background-card border border-background-border">
             <div className="text-[10px] text-slate-400 flex items-center justify-center gap-1">
-              <Lock className="w-3 h-3 text-violet-400" />
+              <Lock className="w-3 h-3 text-primary-400" />
               <span>ACID Lock</span>
             </div>
-            <div className="text-xs font-semibold text-violet-400 mt-0.5">
+            <div className="text-xs font-semibold text-slate-200 mt-0.5">
               Row-Level
             </div>
           </div>

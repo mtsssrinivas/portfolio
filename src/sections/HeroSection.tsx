@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, FileText, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, FileText, Github, Linkedin, Sparkles } from 'lucide-react';
 import { personalData } from '../data/personal';
 import { HeroVisual } from '../components/HeroVisual';
 
@@ -20,33 +20,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
   };
 
   return (
-    <section id="hero" className="relative min-h-[92vh] flex items-center pt-28 pb-16 lg:py-24 overflow-hidden">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-primary-500/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="absolute top-1/3 right-10 w-[400px] h-[300px] bg-accent-violet/10 rounded-full blur-[120px] pointer-events-none -z-10" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <section id="hero" className="relative min-h-[85vh] lg:min-h-[88vh] flex items-center pt-28 pb-16 lg:py-20 overflow-hidden">
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           {/* Left Column: Headline & Action CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            transition={{ duration: 0.4 }}
             className="lg:col-span-7 space-y-6"
           >
-            {/* Status indicator & badge */}
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-background-card/90 text-primary-300 border border-primary-500/30 backdrop-blur-md shadow-sm">
-                <span className="w-2 h-2 rounded-full bg-primary-400 animate-pulse" />
-                {personalData.badge}
+            {/* Small Eyebrow Label */}
+            <div className="flex items-center gap-2">
+              <span className="px-3 py-1 rounded-md text-xs font-mono tracking-wider uppercase font-semibold bg-background-elevated text-primary-400 border border-background-border shadow-sm">
+                COMPUTER SCIENCE ENGINEER • FULL-STACK DEVELOPER
               </span>
-
-              {personalData.status && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/40 text-emerald-400 border border-emerald-500/30">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  {personalData.status}
-                </span>
-              )}
             </div>
 
             {/* Main Headline */}
@@ -59,7 +47,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
             </h1>
 
             {/* Supporting Text */}
-            <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base lg:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
               {personalData.supportingText}
             </p>
 
@@ -68,26 +56,34 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               <a
                 href="#featured-project"
                 onClick={scrollToProjects}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-lg shadow-primary-500/25 border border-primary-400/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-primary-600 hover:bg-primary-500 text-white shadow-md shadow-primary-500/20 border border-primary-400/30 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span>View My Work</span>
-                <ArrowDown className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" />
               </a>
 
-              <button
-                onClick={onOpenResume}
-                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-background-card hover:bg-slate-800 text-slate-200 border border-background-border hover:border-slate-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              <a
+                href="/resume.pdf"
+                download="Sampath_Srinivas_Resume.pdf"
+                onClick={(e) => {
+                  // Open modal viewer on desktop or trigger download
+                  if (window.innerWidth > 768) {
+                    e.preventDefault();
+                    onOpenResume();
+                  }
+                }}
+                className="flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold bg-background-card hover:bg-background-elevated text-slate-200 border border-background-border hover:border-slate-600 transition-all"
               >
                 <FileText className="w-4 h-4 text-primary-400" />
                 <span>Download Resume</span>
-              </button>
+              </a>
 
               <div className="flex items-center gap-2 pl-2 border-l border-background-border">
                 <a
                   href={personalData.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-background-card hover:bg-slate-800 text-slate-300 hover:text-white border border-background-border transition-all"
+                  className="p-2.5 rounded-xl bg-background-card hover:bg-background-elevated text-slate-300 hover:text-white border border-background-border transition-all"
                   aria-label="GitHub"
                 >
                   <Github className="w-4 h-4" />
@@ -96,7 +92,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                   href={personalData.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-background-card hover:bg-slate-800 text-slate-300 hover:text-primary-400 border border-background-border transition-all"
+                  className="p-2.5 rounded-xl bg-background-card hover:bg-background-elevated text-slate-300 hover:text-primary-400 border border-background-border transition-all"
                   aria-label="LinkedIn"
                 >
                   <Linkedin className="w-4 h-4" />
@@ -104,27 +100,45 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               </div>
             </div>
 
-            {/* Quick Tech Ticker */}
-            <div className="pt-4 flex items-center gap-2 text-xs font-mono text-slate-400">
-              <span className="text-slate-500">Core Stack:</span>
-              <div className="flex flex-wrap gap-1.5">
-                {['TypeScript', 'Node.js', 'Express', 'Kafka', 'PostgreSQL', 'Redis', 'React'].map((tech) => (
-                  <span key={tech} className="px-2 py-0.5 rounded bg-background-subtle border border-background-border text-slate-300">
-                    {tech}
-                  </span>
-                ))}
+            {/* Hero Micro-Cards */}
+            <div className="pt-3 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl">
+              <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-background-card/80 border border-background-border text-xs text-slate-300 font-mono">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse flex-shrink-0"></span>
+                <span className="truncate">Currently building Distributed & AI systems</span>
+              </div>
+
+              <div className="flex items-center gap-2 p-2.5 rounded-xl bg-background-card/80 border border-background-border text-xs text-slate-300 font-mono">
+                <Sparkles className="w-3.5 h-3.5 text-primary-400 flex-shrink-0" />
+                <span className="truncate text-[11px]">React • Node • Kafka • Postgres • Redis</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Hero Visual (System Architecture Simulator) */}
+          {/* Right Column: Hero Architecture Visual */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 hidden sm:block"
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="lg:col-span-5"
           >
-            <HeroVisual />
+            {/* Desktop Hero System Visual */}
+            <div className="hidden sm:block">
+              <HeroVisual />
+            </div>
+
+            {/* Mobile Simplified System Topology */}
+            <div className="sm:hidden p-4 rounded-2xl bg-background-card border border-background-border space-y-2 font-mono text-xs text-center">
+              <div className="text-primary-400 font-bold mb-2">SYSTEM ARCHITECTURE</div>
+              <div className="p-2 rounded bg-background border border-background-border text-slate-200">CLIENT (React / Browser)</div>
+              <div className="text-slate-500">↓</div>
+              <div className="p-2 rounded bg-background border border-background-border text-slate-200">API GATEWAY (Node / Express)</div>
+              <div className="text-slate-500">↓</div>
+              <div className="p-2 rounded bg-background border border-background-border text-slate-200">8 MICROSERVICES (Saga)</div>
+              <div className="text-slate-500">↓</div>
+              <div className="p-2 rounded bg-background border border-background-border text-slate-200">KAFKA (7 Topics) & REDIS</div>
+              <div className="text-slate-500">↓</div>
+              <div className="p-2 rounded bg-background border border-background-border text-emerald-400">POSTGRESQL (Row Locks)</div>
+            </div>
           </motion.div>
         </div>
       </div>

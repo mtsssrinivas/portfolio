@@ -1,65 +1,50 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Award, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Award, CheckCircle2 } from 'lucide-react';
 import { certificationsData } from '../data/certifications';
 
 export const CertificationsSection: React.FC = () => {
   return (
-    <section id="certifications" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mb-12">
-          <span className="text-xs font-mono text-primary-400 uppercase tracking-widest block mb-2">
+    <section id="certifications" className="py-16 relative">
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl mb-8">
+          <span className="text-[11px] font-mono text-primary-400 uppercase tracking-widest block mb-1.5 font-semibold">
             08 // CREDENTIALS & SPECIALIZATIONS
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight">
             Certifications
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-400">
-            Industry-aligned certifications across cloud architecture, AWS cloud foundations, and full-stack engineering.
-          </p>
         </div>
 
-        {/* Certifications Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Compact Certifications Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {certificationsData.map((cert, idx) => (
             <motion.div
               key={cert.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.35, delay: idx * 0.1 }}
-              className="p-6 rounded-2xl bg-background-card/80 border border-background-border hover:border-primary-500/40 transition-all flex flex-col justify-between group shadow-lg backdrop-blur-sm"
+              transition={{ duration: 0.3, delay: idx * 0.08 }}
+              className="p-5 rounded-2xl bg-background-card border border-background-border saas-border-hover flex flex-col justify-between"
             >
               <div>
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500/20 to-accent-violet/20 border border-primary-500/30 flex items-center justify-center text-primary-400 mb-4 group-hover:scale-110 transition-transform">
-                  <Award className="w-5 h-5" />
+                <div className="flex items-center gap-2 mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-background-elevated border border-background-border flex items-center justify-center text-primary-400">
+                    <Award className="w-4 h-4" />
+                  </div>
+                  <span className="text-[11px] font-mono text-slate-400 truncate">
+                    {cert.issuer}
+                  </span>
                 </div>
 
-                <span className="text-[11px] font-mono text-primary-400/90 block mb-1">
-                  {cert.issuer}
-                </span>
-
-                <h3 className="text-base font-bold text-slate-100 group-hover:text-primary-300 transition-colors">
+                <h3 className="text-sm font-bold text-slate-100">
                   {cert.title}
                 </h3>
-
-                {cert.topics && (
-                  <div className="mt-4 space-y-1.5 pt-3 border-t border-background-border/60">
-                    {cert.topics.map((topic, tIdx) => (
-                      <div key={tIdx} className="flex items-center gap-2 text-xs text-slate-400">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
-                        <span>{topic}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
               </div>
 
-              <div className="mt-6 pt-3 border-t border-background-border/50 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                <span className="flex items-center gap-1">
-                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
-                  Verified Credential
-                </span>
+              <div className="mt-4 pt-3 border-t border-background-border flex items-center gap-1 text-[11px] font-mono text-emerald-400">
+                <CheckCircle2 className="w-3.5 h-3.5" />
+                <span>Verified Credential</span>
               </div>
             </motion.div>
           ))}

@@ -1,44 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ArrowUpRight, GitBranch, GitCommit, FolderGit2 } from 'lucide-react';
+import { Github, ArrowRight, FolderGit2 } from 'lucide-react';
 import { personalData } from '../data/personal';
 
 export const GitHubSection: React.FC = () => {
   return (
     <section className="py-16 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-content mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-background-card/90 via-background-card/70 to-background-subtle/90 border border-background-border hover:border-primary-500/30 transition-all backdrop-blur-xl relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-8"
+          transition={{ duration: 0.35 }}
+          className="p-8 sm:p-10 rounded-3xl bg-background-elevated border border-background-border shadow-saas-elevated flex flex-col md:flex-row md:items-center justify-between gap-6 relative overflow-hidden"
         >
-          {/* Subtle background icon */}
-          <Github className="absolute -right-8 -bottom-8 w-64 h-64 text-slate-800/20 pointer-events-none -z-10" />
-
-          <div className="max-w-2xl space-y-3">
-            <div className="flex items-center gap-2 text-xs font-mono text-primary-400">
-              <FolderGit2 className="w-4 h-4" />
-              <span>OPEN SOURCE & REPOSITORIES</span>
+          <div className="max-w-2xl space-y-2">
+            <div className="flex items-center gap-2 text-[11px] font-mono text-primary-400 font-semibold uppercase">
+              <FolderGit2 className="w-3.5 h-3.5" />
+              <span>SOURCE CODE & ARCHITECTURES</span>
             </div>
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-100 tracking-tight">
-              Code, Systems & Projects
+              See the code behind the work.
             </h3>
-            <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-              Explore my repositories, backend services, architecture patterns, and open-source contributions directly on GitHub.
+            <p className="text-sm sm:text-base text-slate-300">
+              Explore my repositories, projects, experiments, and engineering work.
             </p>
-
-            <div className="flex items-center gap-4 pt-2 text-xs font-mono text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <GitBranch className="w-3.5 h-3.5 text-primary-400" />
-                <span>Distributed Microservices</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <GitCommit className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Clean Commits</span>
-              </span>
-            </div>
           </div>
 
           <div>
@@ -46,11 +32,11 @@ export const GitHubSection: React.FC = () => {
               href={personalData.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-800 text-white border border-slate-700 hover:border-primary-500/50 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+              className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl text-sm font-semibold bg-background-card hover:bg-background-elevated text-white border border-background-border hover:border-slate-500 shadow-md transition-all hover:scale-[1.02] active:scale-[0.98]"
             >
-              <Github className="w-5 h-5 text-primary-400" />
-              <span>Explore GitHub</span>
-              <ArrowUpRight className="w-4 h-4" />
+              <Github className="w-4 h-4 text-primary-400" />
+              <span>Visit GitHub</span>
+              <ArrowRight className="w-4 h-4" />
             </a>
           </div>
         </motion.div>
